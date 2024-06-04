@@ -24,7 +24,7 @@ public class GestionEstudiantes {
 
     public void buscarEstudiante(String numeroEstudiante) {
         for (Estudiante estudiante : estudiantes) {
-            if (estudiante.getNumeroEstudiante().equals(numeroEstudiante)) {
+            if (estudiante.getNumeroEstudiante().equals(numeroEstudiante.trim())) {
                 System.out.println(estudiante);
                 return;
             }
