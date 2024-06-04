@@ -1,20 +1,16 @@
+public class Estudiante {
+    private String nombre;
+    private String apellido;
+    private int edad;
+    private String numeroEstudiante;
 
-public class Estudiante
-{
-    String nombre;
-    String apellido;
-    int edad;
-    String codigo;
-    
-    public Estudiante(String nombre,String apellido, int edad, String codigo){
-        this.nombre= nombre;
-        this.apellido= apellido;
-        this.edad= edad;
-        this.codigo= codigo;
+    public Estudiante(String nombre, String apellido, int edad, String numeroEstudiante) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.numeroEstudiante = numeroEstudiante;
     }
-    
-    
-    //get
+
     public String getNombre() {
         return nombre;
     }
@@ -27,28 +23,18 @@ public class Estudiante
         return edad;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-    
-    //set
-    
-     public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNumeroEstudiante() {
+        return numeroEstudiante;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", edad=" + edad +
+                ", numeroEstudiante='" + numeroEstudiante + '\'' +
+                '}';
     }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-    
-    
-    
 }
+
