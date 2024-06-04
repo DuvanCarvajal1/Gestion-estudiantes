@@ -1,54 +1,79 @@
-import java.util.*;
-import java.lang.String;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Gestion
-{
-    private List<Estudiante> estudiantes = new ArrayList<Estudiante>();
-    
-    public Gestion(){
-        
+public class GestionEstudiantes {
+    private ArrayList<Estudiante> estudiantes;
+
+    public GestionEstudiantes() {
+        this.estudiantes = new ArrayList<>();
     }
-    
-    public List<Estudiante>getEstudiante(){
-        return estudiantes;
+
+    public void agregarEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
     }
-    
-    public void setEstudiante(List<Estudiante>estudiantes){
-        this.estudiantes= estudiantes;
-    }
-    
-    public void addEstudiante(Estudiante estudiantes){
-        this.estudiantes.add(estudiantes);
-    }
-    
-    public void listarEstudiante(){
-        for(Estudiante estudiante : estudiantes){
-            System.out.println("Nombre: "+ estudiante.getNombre()+ "n/Apellido: "+ estudiante.getApellido()+ "n/Edad: "+ estudiante.getNombre()+ "n/Codigo: "+ estudiante.getCodigo());
-        }
-    }
-    
-    public Estudiante buscarEstudiante( String codigo){
-        for (Estudiante estudiante : estudiantes){
-            if(estudiante.getCodigo() == codigo){
-                return estudiante;
+
+    public void listarEstudiantes() {
+        if (estudiantes.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+        } else {
+            for (Estudiante estudiante : estudiantes) {
+                System.out.println(estudiante);
             }
         }
-        return null;
     }
-    
+
+    public void buscarEstudiante(String numeroEstudiante) {
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getNumeroEstudiante().equals(numeroEstudiante)) {
+                System.out.println(estudiante);
+                return;
+            }
+        }
+        System.out.println("Estudiante no encontrado con el número de estudiante: " + numeroEstudiante);
+    }
+
     public static void main(String[] args) {
-    
-    Gestion gestion = new Gestion(); 
-    
-    System.out.println("Estudiantes registrados; ");
-    gestion.listarEstudiante();
-    
-    System.out.println("Estudiante Buscado es: ");
-    gestion.buscarEstudiante(estudiante);
-    
-    
-    
-    
+        GestionEstudiantes gestion = new GestionEstudiantes();
+        Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
+
+        while (continuar) {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Agregar Estudiante");
+            System.out.println("2. Listar Estudiantes");
+            System.out.println("3. Buscar Estudiante por Número de Estudiante");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Consumir la nueva línea
+
+            if (opcion == 1) {
+                System.out.print("Ingrese nombre: ");
+                String nombre = scanner.nextLine();
+                System.out.print("Ingrese apellido: ");
+                String apellido = scanner.nextLine();
+                System.out.print("Ingrese edad: ");
+                int edad = scanner.nextInt();
+                scanner.nextLine();  // Consumir la nueva línea
+                System.out.print("Ingrese número de estudiante: ");
+                String numeroEstudiante = scanner.nextLine();
+                Estudiante nuevoEstudiante = new Estudiante(nombre, apellido, edad, numeroEstudiante);
+                gestion.agregarEstudiante(nuevoEstudiante);
+                System.out.println("Estudiante agregado exitosamente.");
+            } else if (opcion == 2) {
+                gestion.listarEstudiantes();
+            } else if (opcion == 3) {
+                System.out.print("Ingrese número de estudiante: ");
+                String numeroBuscado = scanner.nextLine();
+                gestion.buscarEstudiante(numeroBuscado);
+            } else if (opcion == 4) {
+                continuar = false;
+                System.out.println("Saliendo del programa.");
+            } else {
+                System.out.println("Opción no válida. Por favor intente nuevamente.");
+            }
+        }
+
+        scanner.close();
     }
 }
-
